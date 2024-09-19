@@ -1,5 +1,4 @@
 body {
-	font-family: Arial, sans-serif;
 	text-align: center;
 	margin: 0;
 
@@ -10,10 +9,22 @@ body {
 
 #container {
 	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#levelDisplay {
+	margin-bottom: 0;
 }
 
 #alert {
 	display: none;
+}
+
+button {
+	cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {
@@ -44,5 +55,9 @@ canvas {
 }
 
 #controls {
-	margin: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	width: 100%;
+	max-width: 550px;
 }
