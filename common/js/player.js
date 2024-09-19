@@ -111,9 +111,27 @@ function levelUp() {
 	drawPlayer();
 }
 
+// Reset the level
+function resetLevel() {
+	player.x = 1;
+	player.y = 1;
+
+	if (localStorage.getItem('mazeLevel') === '1') {
+		alert('You are already at the first level.');
+		return;
+	}
+
+	localStorage.setItem('mazeLevel', 1);
+	mazeSize = getMazeSize();
+	generateMaze(mazeSize, mazeSize);
+	drawPlayer();
+}
+
 // Player and goal initial display
 generateMaze(mazeSize, mazeSize);
 drawPlayer();
 
 // Display the Q table for the initial position of the player
 displayCurrentQTable(`${player.x},${player.y}`);
+
+document.getElementById('resetLevel').addEventListener('click', resetLevel);
