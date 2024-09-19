@@ -152,3 +152,9 @@ drawPlayer();
 displayCurrentQTable(`${player.x},${player.y}`);
 
 document.getElementById('resetLevel').addEventListener('click', resetLevel);
+
+// Control buttons for smartphones
+document.getElementById('left').addEventListener('click', () => movePlayer('left'));
+document.getElementById('up').addEventListener('click', () => movePlayer('up'));
+document.getElementById('down').addEventListener('click', () => movePlayer('down'));
+document.getElementById('right').addEventListener('click', () => movePlayer('right'));

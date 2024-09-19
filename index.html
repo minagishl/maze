@@ -11,12 +11,6 @@
 </head>
 
 <body>
-    <div id="alert">
-        <span>Not supported by your device</span>
-        <span>See <a href="https://github.com/minagishl/self-learning-maze">this</a> repository for more
-            information.</span>
-    </div>
-
     <div id="container">
         <div id="maze-container">
             <canvas id="mazeCanvas" width="550px" height="550px"></canvas>
@@ -29,6 +23,13 @@
             <button id="restartLevel">Restart</button>
             <button id="routeToggle">Show / Hide Optimal Route</button>
             <button id="resetLevel">Reset Level</button>
+        </div>
+
+        <div id="controls-arrow" style="display: none;">
+            <button id="left">←</button>
+            <button id="up">↑</button>
+            <button id="down">↓</button>
+            <button id="right">→</button>
         </div>
 
         <div>
@@ -45,6 +46,7 @@
     </div>
 
     <script src="./common/js/maze.js"></script>
+    <script src="./common/js/mobile.js"></script>
     <script src="./common/js/player.js"></script>
 </body>
 

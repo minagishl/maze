@@ -15,28 +15,8 @@ body {
 	align-items: center;
 }
 
-#alert {
-	display: none;
-}
-
 button {
 	cursor: pointer;
-}
-
-@media screen and (max-width: 700px) {
-	#container {
-		display: none;
-	}
-
-	#alert {
-		display: flex;
-		width: 100dvw;
-		height: 100dvh;
-		justify-content: center;
-		align-items: center;
-		background: white;
-		flex-direction: column;
-	}
 }
 
 #maze-container {
@@ -56,4 +36,16 @@ canvas {
 	margin-bottom: 20px;
 	width: 100%;
 	max-width: 550px;
+}
+
+#controls-arrow {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	width: 100%;
+	max-width: 550px;
+}
+
+#controls-arrow button {
+	margin-right: 15px;
 }
