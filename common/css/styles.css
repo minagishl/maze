@@ -1,0 +1,22 @@
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 20px;
+}
+
+#maze-container {
+	margin: 20px auto;
+	border: 2px solid black;
+	width: 800px;
+	height: 800px;
+	position: relative;
+}
+
+canvas {
+	background-color: #eee;
+}
+
+#controls {
+	margin: 20px;
+}

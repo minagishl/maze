@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Learning Maze Generator</title>
+    <link rel="stylesheet" href="./common/css/styles.css">
+</head>
+
+<body>
+    <h1>Self-Learning Maze Generator and Player</h1>
+
+    <p id="levelDisplay"></p>
+
+    <div id="maze-container">
+        <canvas id="mazeCanvas" width="800" height="800"></canvas>
+    </div>
+
+    <div id="controls">
+        <button id="generateMaze">Generate Maze</button>
+        <button id="restartLevel">Restart</button>
+        <button id="routeToggle">Show / Hide Optimal Route</button>
+    </div>
+
+    <!-- Q-table display area for the current position -->
+    <div id="qTableDisplay">
+        <h2>Q-table State for Current Position</h2>
+        <pre id="qTableContent"></pre> <!-- The contents of the Q-table for the current cell will be displayed here -->
+    </div>
+
+    <script src="./common/js/maze.js"></script>
+    <script src="./common/js/player.js"></script>
+</body>
+
+</html>
