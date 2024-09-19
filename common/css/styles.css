@@ -4,7 +4,7 @@ body {
 
 	/* Display Size */
 	max-height: 100dvh;
-	overflow: hidden;
+	overflow: scroll;
 }
 
 #container {
