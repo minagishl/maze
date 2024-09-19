@@ -15,6 +15,11 @@ function drawPlayer() {
 	ctx.fillRect(player.x * cellSize, player.y * cellSize, cellSize, cellSize);
 }
 
+function drawGoal() {
+	ctx.fillStyle = 'yellow'; // Goal position in yellow
+	ctx.fillRect(goal.x * cellSize, goal.y * cellSize, cellSize, cellSize);
+}
+
 // Added display of the current cell's Q table to the player movement process
 function movePlayer(direction) {
 	let newX = player.x;
@@ -58,6 +63,18 @@ function movePlayer(direction) {
 
 		// Goal Reach Check
 		if (newX === goal.x && newY === goal.y) {
+			const regenerateStages = document.getElementById('regenerateStages');
+
+			if (regenerateStages.checked) {
+				alert('Cleared!');
+				player.x = 1;
+				player.y = 1;
+				drawPlayer();
+				drawGoal();
+				displayCurrentQTable(`${player.x},${player.y}`);
+				return;
+			}
+
 			alert('Cleared! Proceed to the next stage.');
 			levelUp();
 			displayCurrentQTable(`${player.x},${player.y}`);
