@@ -21,8 +21,8 @@ button {
 
 #maze-container {
 	margin: 1rem;
-	width: 550px;
-	height: 550px;
+	width: 500px;
+	height: 500px;
 	position: relative;
 }
 
@@ -43,9 +43,9 @@ canvas {
 	justify-content: center;
 	margin-bottom: 20px;
 	width: 100%;
-	max-width: 550px;
+	max-width: 500px;
 }
 
 #controls-arrow button {
-	margin-right: 15px;
+	margin-right: 5px;
 }
