@@ -2,14 +2,40 @@ body {
 	font-family: Arial, sans-serif;
 	text-align: center;
 	margin: 0;
+
+	/* Display Size */
+	max-height: 100dvh;
+	overflow: hidden;
+}
+
+#container {
 	padding: 20px;
+}
+
+#alert {
+	display: none;
+}
+
+@media screen and (max-width: 700px) {
+	#container {
+		display: none;
+	}
+
+	#alert {
+		display: flex;
+		width: 100dvw;
+		height: 100dvh;
+		justify-content: center;
+		align-items: center;
+		background: white;
+		flex-direction: column;
+	}
 }
 
 #maze-container {
 	margin: 20px auto;
-	border: 2px solid black;
-	width: 800px;
-	height: 800px;
+	width: fit-content;
+	height: fit-content;
 	position: relative;
 }
 
