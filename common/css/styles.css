@@ -15,10 +15,6 @@ body {
 	align-items: center;
 }
 
-#levelDisplay {
-	margin-bottom: 0;
-}
-
 #alert {
 	display: none;
 }
@@ -44,9 +40,9 @@ button {
 }
 
 #maze-container {
-	margin: 20px auto;
-	width: fit-content;
-	height: fit-content;
+	margin: 1rem;
+	width: 550px;
+	height: 550px;
 	position: relative;
 }
 
