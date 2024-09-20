@@ -158,3 +158,36 @@ document.getElementById('left').addEventListener('click', () => movePlayer('left
 document.getElementById('up').addEventListener('click', () => movePlayer('up'));
 document.getElementById('down').addEventListener('click', () => movePlayer('down'));
 document.getElementById('right').addEventListener('click', () => movePlayer('right'));
+
+// hidden command
+const code = [
+	'ArrowUp',
+	'ArrowUp',
+	'ArrowDown',
+	'ArrowDown',
+	'ArrowLeft',
+	'ArrowRight',
+	'ArrowLeft',
+	'ArrowRight',
+	'KeyB',
+	'KeyA',
+];
+
+// Variables for tracking command input
+let currentIndex = 0;
+
+// Event listener to be executed when a key is pressed
+document.addEventListener('keydown', (event) => {
+	if (event.code === code[currentIndex]) {
+		currentIndex++; // proceed to next key
+		if (currentIndex === code.length) {
+			const size = 71;
+			generateMaze(size, size);
+			document.getElementById('levelDisplay').innerText = `Level: Secret`;
+			currentIndex = 0; // Reset
+		}
+	} else {
+		// If the key is wrong, start over from the beginning.
+		currentIndex = 0;
+	}
+});
