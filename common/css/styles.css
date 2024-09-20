@@ -4,6 +4,7 @@ body {
 
 	/* Display Size */
 	max-height: 100dvh;
+	min-width: 100dvw;
 	overflow: scroll;
 }
 
@@ -40,7 +41,10 @@ canvas {
 }
 
 #controls button {
-	padding: 5px;
+	padding: 5px 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #controls-arrow {
