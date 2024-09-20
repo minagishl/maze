@@ -3,6 +3,11 @@ let Q = {}; // Q Table
 const alpha = 0.1; // Learning rate
 const gamma = 0.9; // Discount factor
 const directions = ['up', 'down', 'left', 'right'];
+const epsilon = 0.2; // search rate (Maybe too expensive)
+let automaticInterval = null;
+let lastAction = null; // Record the last action taken
+let automationLowLevel = false; // Flag for automatic operation at low level
+let lastState = null;
 
 // This function calculates the Manhattan distance between two points.
 function getManhattanDistance(x1, y1, x2, y2) {
@@ -38,30 +43,37 @@ function movePlayer(direction) {
 		const distanceAfter = getManhattanDistance(newX, newY, goal.x, goal.y);
 		let reward;
 
+		// Detect backtracking
+		const isBacktracking = lastState === newState;
+
 		if (newX === goal.x && newY === goal.y) {
-			reward = 100; // If the player reaches the goal, the reward is 100.
+			reward = 100; // Reward for reaching the goal
+		} else if (isBacktracking) {
+			reward = -5; // Penalty for backtracking
+		} else if (distanceAfter < distanceBefore) {
+			reward = 1; // Reward for getting closer to the goal
 		} else {
-			reward = distanceBefore - distanceAfter; // Reward based on change in distance
-			if (reward <= 0) {
-				reward = -1; // Penalty for increased distance or no change
-			}
+			reward = -1; // Penalty for moving away from the goal
 		}
 
+		// Initialize the Q table
 		if (!Q[prevState]) Q[prevState] = { up: 0, down: 0, left: 0, right: 0 };
 		if (!Q[newState]) Q[newState] = { up: 0, down: 0, left: 0, right: 0 };
 		const maxQ = Math.max(...Object.values(Q[newState]));
 
+		// Update the Q value
 		Q[prevState][direction] += alpha * (reward + gamma * maxQ - Q[prevState][direction]);
 
+		// Update the player's position
 		player.x = newX;
 		player.y = newY;
 		drawMaze();
 		drawPlayer();
 
-		// Display the Q table for the current square in HTML
+		// Display the current Q table in HTML
 		displayCurrentQTable(newState);
 
-		// Goal Reach Check
+		// Check for goal arrival
 		if (newX === goal.x && newY === goal.y) {
 			const regenerateStages = document.getElementById('regenerateStages');
 
@@ -72,12 +84,17 @@ function movePlayer(direction) {
 				drawPlayer();
 				drawGoal();
 				displayCurrentQTable(`${player.x},${player.y}`);
+				lastState = null; // Reset
 				return;
 			}
 
 			alert('Cleared! Proceed to the next stage.');
 			levelUp();
 			displayCurrentQTable(`${player.x},${player.y}`);
+			lastState = null; // Reset
+		} else {
+			// Update the last action and state
+			lastState = prevState;
 		}
 	}
 }
@@ -191,3 +208,68 @@ document.addEventListener('keydown', (event) => {
 		currentIndex = 0;
 	}
 });
+
+const oppositeActions = {
+	up: 'down',
+	down: 'up',
+	left: 'right',
+	right: 'left',
+};
+
+// Q Use a table and actually move it around.
+function automatic() {
+	if (automaticInterval !== null) {
+		clearInterval(automaticInterval);
+		automaticInterval = null;
+		return;
+	}
+
+	if (automationLowLevel === false) {
+		const result = window.confirm(
+			'If the maze is too large, do you want to make it smaller because it will take longer?'
+		);
+
+		if (result) {
+			mazeSize = 9;
+			generateMaze(mazeSize, mazeSize);
+			drawPlayer();
+			automationLowLevel = true;
+		}
+	}
+
+	automaticInterval = setInterval(() => {
+		const state = `${player.x},${player.y}`;
+
+		if (!Q[state]) {
+			Q[state] = { up: 1, down: 1, left: 1, right: 1 };
+		}
+
+		let availableActions = [...directions]; // Copy all actions
+
+		// If the previous action exists, exclude the opposite action
+		if (lastAction) {
+			const opposite = oppositeActions[lastAction];
+			availableActions = availableActions.filter((action) => action !== opposite);
+		}
+
+		let action;
+
+		if (Math.random() < epsilon && availableActions.length > 0) {
+			// Select a random action with a probability of ε
+			action = availableActions[Math.floor(Math.random() * availableActions.length)];
+		} else {
+			if (availableActions.length === 0) {
+				// If there are no available actions, allow backtracking
+				action = directions.reduce((a, b) => (Q[state][a] > Q[state][b] ? a : b));
+			} else {
+				// Select the action with the maximum Q value
+				action = availableActions.reduce((a, b) => (Q[state][a] > Q[state][b] ? a : b));
+			}
+		}
+
+		movePlayer(action);
+	}, 100);
+}
+
+// Make it actually work automatically
+document.getElementById('automatic').addEventListener('click', () => automatic());
