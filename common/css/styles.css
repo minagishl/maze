@@ -31,11 +31,16 @@ canvas {
 }
 
 #controls {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 5px;
 	margin-bottom: 20px;
 	width: 100%;
 	max-width: 500px;
+}
+
+#controls button {
+	padding: 5px;
 }
 
 #controls-arrow {
