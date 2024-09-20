@@ -1,3 +1,11 @@
+/**
+ * Checks if the current device is a mobile device.
+ *
+ * This function examines the user agent string to determine if the device
+ * is an iOS or Android device.
+ *
+ * @returns {boolean} Returns true if the device is a mobile device, otherwise false.
+ */
 function isMobile() {
 	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
