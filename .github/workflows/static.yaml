@@ -35,8 +35,12 @@ jobs:
 
       - name: Minify HTML, CSS, and JS
         run: |
-          mkdir dist
-          minify ./ -o dist/
+          mkdir -p dist
+          find . -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) | while read file; do
+            echo "Minifying $file"
+            mkdir -p "dist/$(dirname "${file#./}")"
+            minify "$file" -o "dist/${file#./}"
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
