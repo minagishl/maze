@@ -6,6 +6,9 @@ Click [here](https://gist.github.com/minagishl/881590a47d440cce01ed76bfbf45505d)
 
 ## Overview
 
+> **Note:** When you accessed the website, you probably thought it was “old-fashioned.
+> That's because we use old designs against cutting-edge technology to familiarize various generations!
+
 **Self-Learning Maze Generator and Player** is an interactive web game that features automatically generated mazes and a self-learning mechanism. The player moves within the maze while using Q-learning to learn the optimal route. Since the maze is randomly generated each time, new challenges await with every playthrough.
 
 ## Features
