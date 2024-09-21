@@ -62,3 +62,12 @@ canvas {
 #controls-arrow button {
 	margin-right: 5px;
 }
+
+/* The latest technology but with a retro feel to create a gap. */
+
+button {
+	background-color: rgb(239, 239, 239);
+	border-color: rgb(0, 0, 0);
+	border-width: 2px;
+	color: rgb(0, 0, 0);
+}
