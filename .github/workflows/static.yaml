@@ -30,17 +30,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Minify
-        run: npm install -g minify
-
-      - name: Minify HTML, CSS, and JS
-        run: |
-          mkdir -p dist
-          find . -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) | while read file; do
-            echo "Minifying $file"
-            mkdir -p "dist/$(dirname "${file#./}")"
-            minify "$file" -o "dist/${file#./}"
-          done
+      - name: Minify files
+        uses: dra1ex/minify-action@v1.0.3
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -48,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist' # Directory containing the minified files
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
