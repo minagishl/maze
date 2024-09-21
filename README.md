@@ -6,6 +6,8 @@ Click [here](https://gist.github.com/minagishl/881590a47d440cce01ed76bfbf45505d)
 
 ## Overview
 
+<!-- ↓ This may be because developers want to do the opposite for new and old -->
+
 > **Note:** When you accessed the website, you probably thought it was “old-fashioned.
 > That's because we use old designs against cutting-edge technology to familiarize various generations!
 
