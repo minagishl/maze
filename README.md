@@ -1,4 +1,4 @@
-# Self-Learning Maze Generator and Player
+# Q Trail
 
 Click [here](https://gist.github.com/minagishl/881590a47d440cce01ed76bfbf45505d) for the Japanese version
 
