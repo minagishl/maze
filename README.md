@@ -71,11 +71,11 @@ The interface is designed to be simple and intuitive, making it easy to interact
 
 1. **Clone the Repository**:
    ```
-   git clone https://github.com/minagishl/self-learning-maze.git
+   git clone https://github.com/minagishl/q-trail.git
    ```
 2. **Navigate to the Directory**:
    ```
-   cd self-learning-maze
+   cd q-trail
    ```
 3. **Run the Local Server**:
 
